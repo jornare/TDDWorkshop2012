@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="lib/knockout-2.1.0.js"> </script>
+    <script src="lib/jquery-1.8.0.min.js"> </script>
+    <script src="lib/ViewModel.js"> </script>
+    <script> 
+    $(document).ready(function () {
+        ko.applyBindings(new AppViewModel());
+    });
+    </script>
+</head>
+<body>
+<p>First name: <strong data-bind="text: firstName"></strong></p>
+<p>Last name: <strong data-bind="text: lastName"></strong></p>
+
+<p>First name: <input data-bind="value: firstName" /></p>
+<p>Last name: <input data-bind="value: lastName" /></p>
+
+<p>Full name: <strong data-bind="text: fullName"></strong></p>
+
+<button data-bind="click: capitalizeLastName">Go caps</button>
+</body>
