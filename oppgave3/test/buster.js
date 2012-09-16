@@ -9,7 +9,7 @@ config["My tests"] = {
         "lib/jquery-1.8.0.min.js"
     ],
     sources: [
-        "lib/oppgave3ViewModel.js"
+        "src/oppgave3ViewModel.js"
     ],
     tests: [
         "test/*-test.js"
