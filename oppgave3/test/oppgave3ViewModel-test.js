@@ -3,8 +3,8 @@ buster.testCase("The ViewModel", {
     "setUp": function () {
         this.vm = new ReservationsViewModel();
     },
-    "total sum should be zero when initialized": function () {
-        assert.same(this.vm.totalSurcharge(), 0);
+    "total sum should be 200 when initialized": function () {
+        assert.same(this.vm.totalSurcharge(), 200);
     },
     "total number of seats should be two": function () {
         assert.same(this.vm.seats().length, 2);
@@ -18,9 +18,9 @@ buster.testCase("The ViewModel", {
         this.vm.removeSeat(seatToRemove);
         assert.same(this.vm.seats().length, 1);
     },
-    "if an attendee chooses Premium option total price should be 50": function () {
+    "if an attendee chooses Premium option total price should be 125": function () {
         _.first(this.vm.seats()).meal(_.last(this.vm.availableMeals));
-        assert.same(this.vm.totalSurcharge(), 0);
+        assert.same(this.vm.totalSurcharge(), 125);
     },
     "if both attendees choose Premium option total price should be twice 50": function () {
         var twoTimes50 = 50 * 2,
