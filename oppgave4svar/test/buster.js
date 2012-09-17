@@ -6,7 +6,8 @@ config["My tests"] = {
     libs: [
         "lib/underscore-min.js",
         "lib/knockout-2.1.0.js",
-        "lib/jquery-1.8.0.min.js"
+        "lib/jquery-1.8.0.min.js",
+        "src/services.js"
     ],
     sources: [
         "src/oppgave4ViewModel.js"
@@ -27,12 +28,14 @@ config["My tests"] = {
                 "refute",
                 "assert",
                 "ko",
-                "AppViewModel",
+                "ReservationsViewModel",
+                "_"
             ]
         },
     excludes: [
             "jquery",
             "knockout",
-            "sinon"]
+            "sinon",
+            "underscore"]
 }
 }
