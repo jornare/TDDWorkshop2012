@@ -53,14 +53,14 @@ function ReservationsViewModel() {
     self.removeSeat = function (seat) {
         self.seats.remove(seat);
     };
-    
+
     self.canReserveAnotherSeat = ko.computed(function () {
-    	var i = 0, seats = self.seats();
-    	for(i = 0; i<seats.length; i++){
-    		if (!seats[i].name()) {
-    			return false;
-    		}
-    	}
-    	return true;
+        var i = 0, seats = self.seats();
+        for (i = 0; i < seats.length; i++) {
+    	    if (!seats[i].name()) {
+                return false;
+            }
+        }
+        return true;
     });
 }
