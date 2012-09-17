@@ -18,15 +18,15 @@ buster.testCase("The ViewModel", {
         this.vm.removeSeat(seatToRemove);
         assert.same(this.vm.seats().length, 1);
     },
-    "if an attendee chooses Ultimate option total price should be 290": function () {
+    "if an attendee chooses Premium option total price should be 50": function () {
         _.first(this.vm.seats()).meal(_.last(this.vm.availableMeals));
-        assert.same(this.vm.totalSurcharge(), 290);
+        assert.same(this.vm.totalSurcharge(), 0);
     },
-    "if both attendees choose Ultimate option total price should be twice 290": function () {
-        var twoTimes290 = 290 * 2,
+    "if both attendees choose Premium option total price should be twice 50": function () {
+        var twoTimes50 = 50 * 2,
             expensiveMeal = _.last(this.vm.availableMeals);
         _.first(this.vm.seats()).meal(expensiveMeal);
         _.last(this.vm.seats()).meal(expensiveMeal);
-        assert.same(this.vm.totalSurcharge(), twoTimes290);
+        assert.same(this.vm.totalSurcharge(), twoTimes50);
     }
 });
