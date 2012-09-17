@@ -56,7 +56,7 @@ function ReservationsViewModel() {
 
     self.canReserveAnotherSeat = ko.computed(function () {
         var i = 0, seats = self.seats();
-        for (i = 0; i < seats.length; i+=1) {
+        for (i = 0; i < seats.length; i += 1) {
             if (!seats[i].name()) {
                 return false;
             }
