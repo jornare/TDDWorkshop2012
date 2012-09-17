@@ -28,6 +28,7 @@ config["My tests"] = {
                 "assert",
                 "ko",
                 "AppViewModel",
+                "_"
             ]
         },
     excludes: [
