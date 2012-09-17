@@ -4,26 +4,26 @@ buster.testCase("The ViewModel", {
         this.vm = new ReservationsViewModel();
     },
     
-    "canReserveAnotherSeat should be defined": function() {
+    "canReserveAnotherSeat should be defined": function () {
         assert.defined(this.vm.canReserveAnotherSeat);
     },
     
-    "can reserve another seat when list is empty": function() {
+    "can reserve another seat when list is empty": function () {
         this.vm.seats([]);
         assert(this.vm.canReserveAnotherSeat());
     },
     
-    "can not reserve another seat if list contains a seat with no name": function() {
+    "can not reserve another seat if list contains a seat with no name": function () {
         this.vm.addSeat();
         refute(this.vm.canReserveAnotherSeat(), "Should not be able to reserve another seat when empty seat is in list"); 
     },
     
-    "can reserve another seat if an empty seat is added and given a name": function() {
+    "can reserve another seat if an empty seat is added and given a name": function () {
         var newseat = this.vm.addSeat();
         newseat.name("ola");
         assert(this.vm.canReserveAnotherSeat(), ""); 
     },
-     "can reserve another seat if empty seat is deleted": function() {
+     "can reserve another seat if empty seat is deleted": function () {
         var newseat = this.vm.addSeat();
         this.vm.removeSeat(newseat);
         assert(this.vm.canReserveAnotherSeat(), ""); 
