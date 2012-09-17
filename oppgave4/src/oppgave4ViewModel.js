@@ -26,7 +26,7 @@ function ReservationsViewModel() {
     self.availableMeals = [
         { id: 1, mealName: "Standard (Olapakka)", price: 100 },
         { id: 2, mealName: "Premium (Pizza)", price: 25 },
-        { id: 3, mealName: "Ultimate (Pizza og Øl)", price: 0 }
+        { id: 3, mealName: "Ultimate (Pizza og &Oring;l)", price: 0 }
     ];
 
     // Editable data
@@ -56,8 +56,8 @@ function ReservationsViewModel() {
 
     self.canReserveAnotherSeat = ko.computed(function () {
         var i = 0, seats = self.seats();
-        for (i = 0; i < seats.length; i++) {
-    	    if (!seats[i].name()) {
+        for (i = 0; i < seats.length; i+=1) {
+            if (!seats[i].name()) {
                 return false;
             }
         }
