@@ -25,10 +25,10 @@ function ReservationsViewModel() {
 
     // Non-editable catalog data - would come from the server
     self.availableMeals = [
-                           { id: 1, mealName: "Standard (Olapakka)", price: 100 },
-                           { id: 2, mealName: "Premium (Pizza)", price: 25 },
-                           { id: 3, mealName: "Ultimate (Pizza og &Oring;l)", price: 0 }
-                       ];
+         { id: 1, mealName: "Standard (Olapakka)", price: 100 },
+         { id: 2, mealName: "Premium (Pizza)", price: 25 },
+         { id: 3, mealName: "Ultimate (Pizza og &Oring;l)", price: 0 }
+      ];
 
     // Editable data
     self.seats = ko.observableArray([
