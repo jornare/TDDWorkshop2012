@@ -33,6 +33,7 @@ config["My tests"] = {
     excludes: [
             "jquery",
             "knockout",
-            "sinon"]
+            "sinon"
+            "underscore"]
 }
 }
