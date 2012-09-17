@@ -45,7 +45,9 @@ function ReservationsViewModel() {
 
     // Operations
     self.addSeat = function () {
-        self.seats.push(new SeatReservation("", _.first(self.availableMeals)));
+    	var newseat = new SeatReservation("", _.first(self.availableMeals));
+        self.seats.push(newseat);
+        return newseat;
     };
 
     self.removeSeat = function (seat) {
