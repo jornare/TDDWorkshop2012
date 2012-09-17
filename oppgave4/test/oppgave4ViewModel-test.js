@@ -3,21 +3,17 @@ buster.testCase("The ViewModel", {
     "setUp": function () {
         this.vm = new ReservationsViewModel();
     },
-    
     "canReserveAnotherSeat should be defined": function () {
         assert.defined(this.vm.canReserveAnotherSeat);
     },
-    
     "can reserve another seat when list is empty": function () {
         this.vm.seats([]);
         assert(this.vm.canReserveAnotherSeat());
     },
-    
     "can not reserve another seat if list contains a seat with no name": function () {
         this.vm.addSeat();
         refute(this.vm.canReserveAnotherSeat(), "Should not be able to reserve another seat when empty seat is in list"); 
     },
-    
     "can reserve another seat if an empty seat is added and given a name": function () {
         var newseat = this.vm.addSeat();
         newseat.name("ola");
@@ -28,7 +24,6 @@ buster.testCase("The ViewModel", {
         this.vm.removeSeat(newseat);
         assert(this.vm.canReserveAnotherSeat(), ""); 
     },
-    
     "total sum should be zero when initialized": function () {
         assert.same(this.vm.totalSurcharge(), 0);
     },
