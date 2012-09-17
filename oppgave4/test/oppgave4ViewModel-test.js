@@ -19,7 +19,7 @@ buster.testCase("The ViewModel", {
         newseat.name("ola");
         assert(this.vm.canReserveAnotherSeat(), "");
     },
-     "can reserve another seat if empty seat is deleted": function () {
+    "can reserve another seat if empty seat is deleted": function () {
         var newseat = this.vm.addSeat();
         this.vm.removeSeat(newseat);
         assert(this.vm.canReserveAnotherSeat(), "");
@@ -39,15 +39,15 @@ buster.testCase("The ViewModel", {
         this.vm.removeSeat(seatToRemove);
         assert.same(this.vm.seats().length, 1);
     },
-    "if an attendee chooses Ultimate option total price should be 290": function () {
+    "if an attendee chooses Ultimate option total price should be 0": function () {
         _.first(this.vm.seats()).meal(_.last(this.vm.availableMeals));
-        assert.same(this.vm.totalSurcharge(), 290);
+        assert.same(this.vm.totalSurcharge(), 0);
     },
-    "if both attendees choose Ultimate option total price should be twice 290": function () {
-        var twoTimes290 = 290 * 2,
+    "if both attendees choose Ultimate option total price should be twice 0": function () {
+        var twoTimes290 = 0 * 2,
             expensiveMeal = _.last(this.vm.availableMeals);
         _.first(this.vm.seats()).meal(expensiveMeal);
         _.last(this.vm.seats()).meal(expensiveMeal);
-        assert.same(this.vm.totalSurcharge(), twoTimes290);
+        assert.same(this.vm.totalSurcharge(), twoTimes0);
     }
 });
