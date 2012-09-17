@@ -24,9 +24,9 @@ function ReservationsViewModel() {
 
     // Non-editable catalog data - would come from the server
     self.availableMeals = [
-        { id:1, mealName: "Standard (Olapakka)", price: 100 },
-        { id:2, mealName: "Premium (Pizza)", price: 25 },
-        { id:3, mealName: "Ultimate (Pizza og Øl)", price: 0 }
+        { id: 1, mealName: "Standard (Olapakka)", price: 100 },
+        { id: 2, mealName: "Premium (Pizza)", price: 25 },
+        { id: 3, mealName: "Ultimate (Pizza og Øl)", price: 0 }
     ];
 
     // Editable data
@@ -45,7 +45,7 @@ function ReservationsViewModel() {
 
     // Operations
     self.addSeat = function () {
-    	var newseat = new SeatReservation("", _.first(self.availableMeals));
+        var newseat = new SeatReservation("", _.first(self.availableMeals));
         self.seats.push(newseat);
         return newseat;
     };
@@ -55,9 +55,9 @@ function ReservationsViewModel() {
     };
     
     self.canReserveAnotherSeat = ko.computed(function () {
-    	var i=0, seats = self.seats();
-    	for(i=0; i<seats.length; i++){
-    		if(!seats[i].name()){
+    	var i = 0, seats = self.seats();
+    	for(i = 0; i<seats.length; i++){
+    		if (!seats[i].name()) {
     			return false;
     		}
     	}
