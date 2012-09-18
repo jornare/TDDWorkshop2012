@@ -10,12 +10,13 @@
             ko.applyBindings(new ReservationsViewModel());
         });
         </script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
     </head>
-        <body>
+    <body>
         
         <h2>Dine reservasjoner (<span data-bind="text: seats().length"></span>)</h2>
         
-        <table>
+        <table id="rounded-corner">
             <thead>
                 <tr>
                     <th>Navn</th><th>Måltid</th><th>Å betale</th><th></th>

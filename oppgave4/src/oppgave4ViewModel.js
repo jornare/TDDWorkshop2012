@@ -26,7 +26,7 @@ function ReservationsViewModel() {
     self.availableMeals = [
         { id: 1, mealName: "Standard (Olapakka)", price: 100 },
         { id: 2, mealName: "Premium (Pizza)", price: 25 },
-        { id: 3, mealName: "Ultimate (Pizza og &Oring;l)", price: 0 }
+        { id: 3, mealName: "Ultimate (Pizza og Øl)", price: 0 }
     ];
 
     // Editable data
