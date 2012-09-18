@@ -17,6 +17,10 @@ function SeatReservation(id, name, initialMeal) {
         var price = self.meal().price;
         return price ? price.toFixed(2) + "kr" : "Gratis";
     });
+    
+    self.name.subscribe(function () {
+    	//TODO: save
+    })
 }
 
 // Overall viewmodel for this screen, along with initial state
@@ -82,15 +86,11 @@ function ReservationsViewModel() {
     			return false;
     		} else {
     			for ( i = 0; i< data.length; i +=1){
-    				
+    				self.addSeat(data.id, data.name, data.mealId);
     			}
     		}
     		return true;
     	});
-    	
-    };
-    
-    self.save = function() {
     	
     };
 }
