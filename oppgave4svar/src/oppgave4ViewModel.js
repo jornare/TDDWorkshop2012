@@ -7,8 +7,9 @@
  * 
  */
 
-function SeatReservation(name, initialMeal) {
+function SeatReservation(id, name, initialMeal) {
     var self = this;
+    self.id = ko.observable(id);
     self.name = ko.observable(name);
     self.meal = ko.observable(initialMeal);
 
@@ -31,8 +32,8 @@ function ReservationsViewModel() {
 
     // Editable data
     self.seats = ko.observableArray([
-        new SeatReservation("Steve", _.first(self.availableMeals)),
-        new SeatReservation("Bert", _.first(self.availableMeals))
+        //new SeatReservation("Steve", _.first(self.availableMeals)),
+        //new SeatReservation("Bert", _.first(self.availableMeals))
     ]);
 
     // Computed data
@@ -44,13 +45,24 @@ function ReservationsViewModel() {
     });
 
     // Operations
-    self.addSeat = function () {
-        var newseat = new SeatReservation("", _.first(self.availableMeals));
+    self.addSeat = function (id, name, mealId) {
+    	var newseat, meal;
+    	if (!id) {
+        	newseat = new SeatReservation(null, "", _.first(self.availableMeals));
+    	} else {
+    		meal = self.availableMeals[ mealId-1 ];
+    		newseat = new SeatReservation(id, name, meal);
+    	}
         self.seats.push(newseat);
         return newseat;
     };
 
     self.removeSeat = function (seat) {
+    	MYAPP.services.removeItem(seat, function (err, response) {
+    		if( err ){
+    			alert( err );
+    		}
+    	});
         self.seats.remove(seat);
     };
 
@@ -63,4 +75,22 @@ function ReservationsViewModel() {
         }
         return true;
     });
+    
+    self.load = function() {
+    	MYAPP.services.load( function(err, data) {
+    		if( err ) {
+    			return false;
+    		} else {
+    			for ( i = 0; i< data.length; i +=1){
+    				
+    			}
+    		}
+    		return true;
+    	});
+    	
+    };
+    
+    self.save = function() {
+    	
+    };
 }
