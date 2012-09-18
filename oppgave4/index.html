@@ -28,12 +28,16 @@
                     <td><a href="#" data-bind="click: $root.removeSeat">Slett</a></td>
                 </tr>    
             </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                    	<button data-bind="click: addSeat, enable: canReserveAnotherSeat">Reserver ett sete til</button>
+                    </td>
+                    <td>Totalt:</td>
+                    <td><span data-bind="text: totalSurcharge().toFixed(2)"></span>kr</td>
+                    <td></td>
+                </tr>   
+            </tfoot>
         </table>
-        
-        <button data-bind="click: addSeat, enable: canReserveAnotherSeat">Reserver ett sete til</button>
-        
-        <h3 data-bind="visible: totalSurcharge() > 0">
-            Totalt: <span data-bind="text: totalSurcharge().toFixed(2)"></span>kr
-        </h3>
     </body>
 </html>
