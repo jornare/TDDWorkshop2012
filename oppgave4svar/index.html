@@ -1,38 +1,43 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    <script src="lib/underscore-min.js"> </script>
-    <script src="lib/knockout-2.1.0.js"> </script>
-    <script src="lib/jquery-1.8.0.min.js"> </script>
-    <script src="src/oppgave4ViewModel.js"> </script>
-    <script> 
-    $(document).ready(function () {
-        ko.applyBindings(new ReservationsViewModel());
-    });
-    </script>
-</head>
-<body>
-
-Dine reservasjoner (<span data-bind="text: seats().length"></span>)</h2>
-
-<table>
-    <thead><tr>
-        <th>Navn</th><th>Måltid</th><th>Å betale</th><th></th>
-    </tr></thead>
-    <tbody data-bind="foreach: seats">
-        <tr>
-            <td><input data-bind="value: name" /></td>
-            <td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
-            <td data-bind="text: formattedPrice"></td>
-            <td><a href="#" data-bind="click: $root.removeSeat">Slett</a></td>
-        </tr>    
-    </tbody>
-</table>
-
-<button data-bind="click: addSeat, enable: canReserveAnotherSeat">Reserver ett sete til</button>
-
-<h3 data-bind="visible: totalSurcharge() > 0">
-    Totalt: <span data-bind="text: totalSurcharge().toFixed(2)"></span>kr
-</h3>
-
-</body>
+    <head>
+        <script src="lib/underscore-min.js"> </script>
+        <script src="lib/knockout-2.1.0.js"> </script>
+        <script src="lib/jquery-1.8.0.min.js"> </script>
+        <script src="src/oppgave4ViewModel.js"> </script>
+        <script> 
+        $(document).ready(function () {
+            ko.applyBindings(new ReservationsViewModel());
+        });
+        </script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+    <body>
+    
+        <h2>Dine reservasjoner (<span data-bind="text: seats().length"></span>)</h2>
+        
+        <table id="rounded-corner">
+            <thead><tr>
+                <th>Navn</th><th>Måltid</th><th>Å betale</th><th></th>
+            </tr></thead>
+            <tbody data-bind="foreach: seats">
+                <tr>
+                    <td><input data-bind="value: name" /></td>
+                    <td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
+                    <td data-bind="text: formattedPrice"></td>
+                    <td><a href="#" data-bind="click: $root.removeSeat">Slett</a></td>
+                </tr>    
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                    	<button data-bind="click: addSeat, enable: canReserveAnotherSeat">Reserver ett sete til</button>
+                    </td>
+                    <td>Totalt:</td>
+                    <td><span data-bind="text: totalSurcharge().toFixed(2)"></span>kr</td>
+                    <td></td>
+                </tr>   
+            </tfoot>
+        </table>
+    </body>
+</html>
