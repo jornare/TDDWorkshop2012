@@ -1,9 +1,9 @@
 var http = require('http')
 			, fs = require('fs')
-			, reservations = [{id:1, 'name':'Ola','mealId':1},
-                    {id:2, 'name':'Per','mealId':2},
-                    {id:3, 'name':'Eva','mealId':3},
-                    {id:4, 'name':'Olga','mealId':3}];
+			, reservations = [{id:1, 'name':'Ola','mealId':0},
+                    {id:2, 'name':'Per','mealId':1},
+                    {id:3, 'name':'Eva','mealId':2},
+                    {id:4, 'name':'Olga','mealId':2}];
 
 // do not EVER use the death* for allow origin for real
 // It's just used here to avoid having to run the index of a local file server
