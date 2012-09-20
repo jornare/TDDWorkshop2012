@@ -12,8 +12,8 @@ buster.testCase("The ViewModel", {
     "load should be called on initialization": function () {
         assert.calledOnce(MYAPP.services.load);
     },
-    "should have one element when initialized": function () {
-        assert.same(this.vm.seats().length, 1);
+    "should have no elements when initialized": function () {
+        assert.same(this.vm.seats().length, 0);
     },
     "should not save when an empty seat is added": function () {
         // replacing method with spy
