@@ -92,17 +92,17 @@ function ReservationsViewModel() {
         }
         return null;
     };
-    
-    self.load = function() {
-        MYAPP.services.load( function(err, data) {
-            var i, seat,newseat;
+
+    self.load = function () {
+        MYAPP.services.load(function(err, data) {
+            var i, seat, newseat;
             if (err) {
                 return false;
             } else {
                 for (i = 0; i< data.length; i += 1) {
-                    newseat=data[i];
+                    newseat = data[i];
                     seat = self.getSeatById(data[i].id);
-                    if(seat) {
+                    if (seat) {
                         seat.name(newseat.name);
                         seat.meal(self.availableMeals[newseat.mealId]);
                     } else {
