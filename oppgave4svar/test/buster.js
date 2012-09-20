@@ -31,7 +31,8 @@ config["My tests"] = {
                 "ReservationsViewModel",
                 "_",
                 "$",
-                "MYAPP"
+                "MYAPP",
+                "alert"
             ]
         },
     excludes: [

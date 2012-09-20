@@ -48,16 +48,16 @@ function ReservationsViewModel() {
     // Operations
     self.addSeat = function (id, name, mealId) {
         var newseat, meal;
-        if (typeof (mealId) == 'undefined') {
+        if (typeof (mealId) === 'undefined') {
             newseat = new SeatReservation(null, "", _.first(self.availableMeals));
         } else {
             meal = self.availableMeals[mealId];
             newseat = new SeatReservation(id, name, meal);
         }
-        newseat.name.subscribe(function() {
+        newseat.name.subscribe(function () {
             MYAPP.services.saveItem(newseat, function () {});
         });
-        newseat.meal.subscribe(function() {
+        newseat.meal.subscribe(function () {
             MYAPP.services.saveItem(newseat, function () {});
         });
         self.seats.push(newseat);
@@ -66,7 +66,7 @@ function ReservationsViewModel() {
 
     self.removeSeat = function (seat) {
         MYAPP.services.removeItem(seat, function (err, response) {
-            if(err) {
+            if (err) {
                 alert(err);
             }
         });
@@ -84,9 +84,9 @@ function ReservationsViewModel() {
     });
     
     self.getSeatById = function (id) {
-        var i, s=self.seats();
-        for ( i = 0; i< s.length; i +=1) {
-            if(s[i].id() == id){
+        var i, s = self.seats();
+        for ( i = 0; i< s.length; i += 1) {
+            if (s[i].id() == id) {
                 return s[i];
             }
         }

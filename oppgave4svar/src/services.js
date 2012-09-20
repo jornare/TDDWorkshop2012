@@ -3,7 +3,7 @@ var MYAPP = MYAPP || {};
     "use strict";
     var serverURL = "http://localhost:1337";
     MYAPP.services = MYAPP.services || {};
-    
+
     MYAPP.services.load = function (callback) {
         $.ajax(serverURL + "/load", {
             data: '{}',
@@ -22,7 +22,7 @@ var MYAPP = MYAPP || {};
             dataType: 'json',
             type: "post"
         }).success(function (result) {
-            if(!data.id()) {
+            if (!data.id()) {
                 data.id(result.id);
             }
             callback(null, result);
