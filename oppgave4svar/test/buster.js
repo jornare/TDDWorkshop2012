@@ -29,7 +29,9 @@ config["My tests"] = {
                 "assert",
                 "ko",
                 "ReservationsViewModel",
-                "_"
+                "_",
+                "$",
+                "MYAPP"
             ]
         },
     excludes: [

@@ -47,29 +47,29 @@ function ReservationsViewModel() {
 
     // Operations
     self.addSeat = function (id, name, mealId) {
-    	var newseat, meal;
-    	if (typeof(mealId)=='undefined') {
-        	newseat = new SeatReservation(null, "", _.first(self.availableMeals));
-    	} else {
-    		meal = self.availableMeals[ mealId ];
-    		newseat = new SeatReservation(id, name, meal);
-    	}
-    	newseat.name.subscribe(function(){
-    		MYAPP.services.saveItem(newseat, function(){});
-    	});
-    	newseat.meal.subscribe(function(){
-    		MYAPP.services.saveItem(newseat, function(){});
-    	});
+        var newseat, meal;
+        if (typeof (mealId) == 'undefined') {
+            newseat = new SeatReservation(null, "", _.first(self.availableMeals));
+        } else {
+            meal = self.availableMeals[mealId];
+            newseat = new SeatReservation(id, name, meal);
+        }
+        newseat.name.subscribe(function() {
+            MYAPP.services.saveItem(newseat, function () {});
+        });
+        newseat.meal.subscribe(function() {
+            MYAPP.services.saveItem(newseat, function () {});
+        });
         self.seats.push(newseat);
         return newseat;
     };
 
     self.removeSeat = function (seat) {
-    	MYAPP.services.removeItem(seat, function (err, response) {
-    		if( err ){
-    			alert( err );
-    		}
-    	});
+        MYAPP.services.removeItem(seat, function (err, response) {
+            if(err) {
+                alert(err);
+            }
+        });
         self.seats.remove(seat);
     };
 
@@ -84,35 +84,34 @@ function ReservationsViewModel() {
     });
     
     self.getSeatById = function (id) {
-    	var i, s=self.seats();
-		for ( i = 0; i< s.length; i +=1){
-			if(s[i].id()==id){
-				return s[i];
-			}
-		}
-		return null;
+        var i, s=self.seats();
+        for ( i = 0; i< s.length; i +=1) {
+            if(s[i].id() == id){
+                return s[i];
+            }
+        }
+        return null;
     };
     
     self.load = function() {
-    	MYAPP.services.load( function(err, data) {
-    		var i, seat,newseat;
-    		if( err ) {
-    			return false;
-    		} else {
-    			for ( i = 0; i< data.length; i += 1){
-    				newseat=data[i];
-    				seat = self.getSeatById(data[i].id);
-    				if(seat){
-    					seat.name(newseat.name);
-    					seat.meal(self.availableMeals[newseat.mealId]);
-    				}else{
-    					self.addSeat(newseat.id, newseat.name, newseat.mealId);
-    				}
-    			}
-    		}
-    		return true;
-    	});
-    	
+        MYAPP.services.load( function(err, data) {
+            var i, seat,newseat;
+            if (err) {
+                return false;
+            } else {
+                for (i = 0; i< data.length; i += 1) {
+                    newseat=data[i];
+                    seat = self.getSeatById(data[i].id);
+                    if(seat) {
+                        seat.name(newseat.name);
+                        seat.meal(self.availableMeals[newseat.mealId]);
+                    } else {
+                        self.addSeat(newseat.id, newseat.name, newseat.mealId);
+                    }
+                }
+            }
+            return true;
+        });
     };
     self.load();
 }
