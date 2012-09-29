@@ -1,0 +1,1 @@
+Første 3 som roper høyt "Bingo!!!" får en neve Dumle!!!

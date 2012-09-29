@@ -12,36 +12,36 @@ buster.testCase("The ViewModel", {
     "load should be called on initialization": function () {
         assert.calledOnce(MYAPP.services.load);
     },
-    "should have one element when initialized": function () {
-        assert.same(this.vm.tasks().length, 1);
+    "should have no elements when initialized": function () {
+        assert.same(this.vm.seats().length, 0);
     },
-    "should call save when an empty seat is added": function () {
+    "should not save when an empty seat is added": function () {
         // replacing method with spy
         MYAPP.services.saveItem = this.spy();
         refute.calledOnce(MYAPP.services.saveItem);
         this.vm.addSeat();
-        assert.calledOnce(MYAPP.services.saveItem);
+        refute.calledOnce(MYAPP.services.saveItem);
     },
     "should not call save when an existing seat is added": function () {
         MYAPP.services.saveItem = this.spy();
         refute.calledOnce(MYAPP.services.saveItem);
-        this.vm.addSeat(1,"Per",1);
+        this.vm.addSeat(1, "Per", 1);
         refute.calledOnce(MYAPP.services.saveItem);
     },
     "should call save when a seat is modified": function () {
         var seat;
-    	MYAPP.services.saveItem = this.spy();
+        MYAPP.services.saveItem = this.spy();
         refute.calledOnce(MYAPP.services.saveItem);
-        seat = this.vm.addSeat(1,"Per",1);
+        seat = this.vm.addSeat(1, "Per", 1);
         refute.calledOnce(MYAPP.services.saveItem);
         seat.name("Petter");
         assert.calledOnce(MYAPP.services.saveItem);
     },
     "should call removeItem when a seat is removed": function () {
         var seat;
-    	MYAPP.services.removeItem = this.spy();
+        MYAPP.services.removeItem = this.spy();
         refute.calledOnce(MYAPP.services.removeItem);
-        seat = this.vm.addSeat(1,"Per",1);
+        seat = this.vm.addSeat(1, "Per", 1);
         refute.calledOnce(MYAPP.services.removeItem);
         this.vm.removeSeat(seat);
         assert.calledOnce(MYAPP.services.removeItem);
