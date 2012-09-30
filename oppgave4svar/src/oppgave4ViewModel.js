@@ -93,22 +93,41 @@ function ReservationsViewModel() {
         return null;
     };
 
+    //merges data from server with seat reservations in viewmodel
+    self.mergeSeats = function (data) {
+    	var i, j, seat, seats = self.seats(), newseat, foundseat;
+    	for (i = 0; i < seats.length; i += 1){//remove seats not in the viewmodel
+    		seat = seats[i];
+    		foundseat = false;
+    		for (j = 0; j < data.length; j +=1 ){
+    			if (seat.id() == data[j].id){
+    				foundseat = true;
+    				break;
+    			}
+    		}
+    		if (!foundseat) {
+    			self.seats.remove(seat);
+    		}
+    	}
+    	
+        for (i = 0; i< data.length; i += 1) {//add new seats from server
+            newseat = data[i];
+            seat = self.getSeatById(data[i].id);
+            if (seat) {
+                seat.name(newseat.name);
+                seat.meal(self.availableMeals[newseat.mealId]);
+            } else {
+                self.addSeat(newseat.id, newseat.name, newseat.mealId);
+            }
+        }
+    };
+    
     self.load = function () {
         MYAPP.services.load(function(err, data) {
-            var i, seat, newseat;
             if (err) {
                 return false;
             } else {
-                for (i = 0; i< data.length; i += 1) {
-                    newseat = data[i];
-                    seat = self.getSeatById(data[i].id);
-                    if (seat) {
-                        seat.name(newseat.name);
-                        seat.meal(self.availableMeals[newseat.mealId]);
-                    } else {
-                        self.addSeat(newseat.id, newseat.name, newseat.mealId);
-                    }
-                }
+            	self.mergeSeats(data);
             }
             return true;
         });

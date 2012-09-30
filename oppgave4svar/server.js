@@ -71,6 +71,12 @@ http.createServer(function (req, res) {
                     console.log('File not found: ' + req.url);
                     return;
                 }else{
+                	if(req.url.indexOf('.css')>0){
+                		headers['Content-Type']= 'text/css';
+                	} else if(req.url.indexOf('.js')>0){
+                		headers['Content-Type']= 'text/javascript';
+                	}
+                	res.writeHead(200,headers);
                 	res.write(data,'utf8');
                 	res.end();
                 	return;
