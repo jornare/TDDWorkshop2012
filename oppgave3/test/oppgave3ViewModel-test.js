@@ -1,3 +1,15 @@
+/*
+ * Tester til oppgave 3
+ * Legg merke til "setUp" funksjonen. Alt som deklareres her er globalt tilgjengelig i dine tester.
+ * Oppgaven er å lage this.vm.canReserveAnotherSeat, men husk å lage testene her først.
+ * Hvilke krav stilles til en slik funksjon?
+ * 	Kan du reservere et sete når lista (this.vm.seats) er:
+ * 		tom
+ * 		har ett element med eller uten navn utfylt?
+ * 		osv...
+ * Skriv 1 test som feiler, gi tastaturet til den andre og få han til å fikse feilen.
+ * La han skrive en ny test som feiler og det er igjen din tur å rette.
+ */
 "use strict";
 buster.testCase("The ViewModel", {
     "setUp": function () {

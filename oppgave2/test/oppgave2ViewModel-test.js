@@ -1,3 +1,10 @@
+/*
+ * Tester til oppgave 2
+ * Se http://busterjs.org/docs/assertions/ for måter å teste på ved bruk av assertions.
+ * Eksempel:	assert.equals(verdi1, verdi2, feilmelding) //verdiene skal være like
+ * 				refute(verdi1, verdi2, feilmelding) //verdiene skal være forskjellige
+ * 				assert.defined(verdi1) //variabelen eller funksjonen skal være definert
+ */
 "use strict";
 buster.testCase("The ViewModel", {
     "should update the fullname when firstname changes": function () {

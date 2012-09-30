@@ -5,7 +5,7 @@
  * 
  * Lag self.canReserveAnotherSeat testdrevet (med PingPong om mulig)
  * Bind opp "Reserver ett sete til" knappen mot denne funksjonen (se index.html)
- * 
+ * Dokumentasjon til bindinger: http://knockoutjs.com/documentation/introduction.html
  */
 
 function SeatReservation(name, initialMeal) {
