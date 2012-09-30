@@ -9,6 +9,7 @@
 
 function SeatReservation(id, name, initialMeal) {
     var self = this;
+    self.isLoading = false;
     self.id = ko.observable(id);
     self.name = ko.observable(name);
     self.meal = ko.observable(initialMeal);
@@ -54,11 +55,15 @@ function ReservationsViewModel() {
             meal = self.availableMeals[mealId];
             newseat = new SeatReservation(id, name, meal);
         }
-        newseat.name.subscribe(function () {
-            MYAPP.services.saveItem(newseat, function () {});
+        newseat.name.subscribe(function ( newValue ) {
+            if (!newseat.isLoading) {
+                MYAPP.services.saveItem(newseat, function () {});
+            }
         });
-        newseat.meal.subscribe(function () {
-            MYAPP.services.saveItem(newseat, function () {});
+        newseat.meal.subscribe(function ( newValue ) {
+            if (!newseat.isLoading) {
+                MYAPP.services.saveItem(newseat, function () {});
+            }
         });
         self.seats.push(newseat);
         return newseat;
@@ -95,27 +100,29 @@ function ReservationsViewModel() {
 
     //merges data from server with seat reservations in viewmodel
     self.mergeSeats = function (data) {
-    	var i, j, seat, seats = self.seats(), newseat, foundseat;
-    	for (i = 0; i < seats.length; i += 1){//remove seats not in the viewmodel
-    		seat = seats[i];
-    		foundseat = false;
-    		for (j = 0; j < data.length; j +=1 ){
-    			if (seat.id() == data[j].id){
-    				foundseat = true;
-    				break;
-    			}
-    		}
-    		if (!foundseat) {
-    			self.seats.remove(seat);
-    		}
-    	}
-    	
+        var i, j, seat, seats = self.seats(), newseat, foundseat;
+        for (i = 0; i < seats.length; i += 1){//remove seats not in the viewmodel
+            seat = seats[i];
+            foundseat = false;
+            for (j = 0; j < data.length; j +=1 ){
+                if (seat.id() == data[j].id){
+                    foundseat = true;
+                    break;
+                }
+            }
+            if (!foundseat) {
+                self.seats.remove(seat);
+            }
+        }
+        
         for (i = 0; i< data.length; i += 1) {//add new seats from server
             newseat = data[i];
             seat = self.getSeatById(data[i].id);
             if (seat) {
+            	seat.isLoading = true;
                 seat.name(newseat.name);
                 seat.meal(self.availableMeals[newseat.mealId]);
+                seat.isLoading = false;
             } else {
                 self.addSeat(newseat.id, newseat.name, newseat.mealId);
             }
@@ -127,10 +134,12 @@ function ReservationsViewModel() {
             if (err) {
                 return false;
             } else {
-            	self.mergeSeats(data);
+                self.mergeSeats(data);
             }
             return true;
         });
     };
     self.load();
+    
+    setInterval(function () {self.load();}, 2000);
 }
