@@ -1,7 +1,7 @@
 var MYAPP = MYAPP || {};
 (function () {
     "use strict";
-    var serverURL = "http://localhost:1337";
+    var serverURL = "http://" + location.host;
     MYAPP.services = MYAPP.services || {};
 
     MYAPP.services.load = function (callback) {
