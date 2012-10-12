@@ -103,6 +103,9 @@ function ReservationsViewModel() {
         var i, j, seat, seats = self.seats(), newseat, foundseat;
         for (i = 0; i < seats.length; i += 1){//remove seats not in the viewmodel
             seat = seats[i];
+            if (!seat.id()) { //If seat is not saved, don't remove it
+            	continue;
+            }
             foundseat = false;
             for (j = 0; j < data.length; j +=1 ){
                 if (seat.id() == data[j].id){
